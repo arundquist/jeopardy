@@ -19,3 +19,14 @@ Route::get('/', function()
 Route::controller('jeapardies', 'JeapardiesController');
 Route::controller('teams', 'TeamsController');
 Route::controller('points', 'PointsController');
+
+Route::get('viewall', function()
+{
+	$all=Jeapardy::orderBy('topic')->get();
+	echo "<table border='1'><tr><th>topic</th><th>question</th><th>answer</th>";
+	foreach($all as $single) {
+		echo "<tr><td>$single->topic</td><td>$single->question</td><td>$single->answer</td></tr>";
+	}
+	echo "</table>";
+	//dd($all);
+});
